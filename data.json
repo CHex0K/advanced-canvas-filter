@@ -1,0 +1,22 @@
+{
+  "mySetting": "ррр",
+  "checkboxGroups": {
+    "CV": [
+      "#Object_Detection",
+      "#Image_Classification"
+    ],
+    "NLP": [
+      "#OCR",
+      "#NER"
+    ]
+  },
+  "checkboxStates": {
+    "#Object_Detection": false,
+    "#NER": false,
+    "#OCR": false
+  },
+  "jsonInput": "{\"CV\":[\"#Object_Detection\",\"#Image_Classification\"],\"NLP\":[\"#OCR\",\"#NER\"]}",
+  "addOtherTagsGroup": false,
+  "HidenOpacity": "0.2",
+  "FilterMode": "All Tags Inclusion"
+}
