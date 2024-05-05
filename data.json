@@ -1,0 +1,20 @@
+{
+  "mySetting": "ррр",
+  "checkboxGroups": {
+    "CV": [
+      "#hh",
+      "#ii"
+    ],
+    "NLP": [
+      "OCR",
+      "NER"
+    ]
+  },
+  "checkboxStates": {
+    "#ii": false
+  },
+  "jsonInput": "{\"CV\":[\"#hh\",\"#ii\"],\"NLP\":[\"OCR\",\"NER\"]}",
+  "addOtherTagsGroup": false,
+  "HidenOpacity": "0.2",
+  "FilterMode": "All Tags Inclusion"
+}
