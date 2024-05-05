@@ -4,7 +4,7 @@
 	"version": "0.0.1",
 	"minAppVersion": "1.4.0",
 	"description": "This plugin allows you to filter Canvas to display only elements with specified tags.",
-	"author": "Alexander Zelentsov",
+	"author": "CHex0K",
 	"authorUrl": "https://github.com/CHex0K",
 	"fundingUrl": "https://github.com/CHex0K/advanced-canvas-filter",
 	"isDesktopOnly": false
