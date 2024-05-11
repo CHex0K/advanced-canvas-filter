@@ -156,9 +156,6 @@ export default class FilterPlugin extends Plugin {
             new PlugInterface(this.app, this.settings, this.saveSettings.bind(this), this.getActiveCheckboxes.bind(this), this).open();
         });
 
-        // This adds a status bar item to the bottom of the app. Does not work on mobile apps.
-        const statusBarItemEl = this.addStatusBarItem();
-        statusBarItemEl.setText('Status Bar Text');
 
         // This adds a settings tab so the user can configure various aspects of the plugin
         this.addSettingTab(new FilterSettingTab(this.app, this));
@@ -168,17 +165,14 @@ export default class FilterPlugin extends Plugin {
 
     // Обработчик события изменения активного представления
     onActiveLeafChange = async () => {
-        const activeLeaf = this.app.workspace.activeLeaf;
-        if (!activeLeaf) return; // Если нет активного представления, выходим
-
-        const activeView = activeLeaf.view;
-        if (!activeView) return; // Если нет активного представления, выходим
+        const canvasView = this.app.workspace.getActiveViewOfType(ItemView);
+        if (!canvasView) return; // Если нет активного представления, выходим
 
         // Проверяем, является ли активное представление видом "canvas"
-        if (activeView.getViewType() === 'canvas') {
-            //при переходе пользователя на canvas происхоит фильтровка по тегам
-            let s :string[] = this.getActiveCheckboxes(); // Call getActiveCheckboxes function
-            this.showNodesByTags(s)
+        if (canvasView.getViewType() === 'canvas') {
+            //при переходе пользователя на canvas происходит фильтрация по тегам
+            let activeCheckboxes: string[] = this.getActiveCheckboxes(); // Вызываем функцию getActiveCheckboxes
+            this.showNodesByTags(activeCheckboxes);
         }
     };
 
@@ -449,7 +443,7 @@ class FilterSettingTab extends PluginSettingTab {
 
         new Setting(containerEl)
             .setName('Add "Other tags" group')
-            .setDesc('Check this box to add an "Other tags" group.')
+            .setDesc('Select this check box to add the "Other Tags" group. This group will contain tags that are not included in other groups.')
             .addToggle(toggle => toggle
                 .setValue(this.plugin.settings.addOtherTagsGroup) // Устанавливаем значение чекбокса из настроек
                 .onChange(async (value) => {
@@ -457,7 +451,7 @@ class FilterSettingTab extends PluginSettingTab {
                     await this.plugin.saveSettings();
                 }));
         new Setting(containerEl)
-            .setName('Hidden Opacity')
+            .setName('Hidden opacity')
             .setDesc('Adjust the opacity level for hidden elements. Value must been between 0 and 1')
             .addText(text => text
                 .setValue(this.plugin.settings.HidenOpacity) // Устанавливаем значение текстового поля из настроек
