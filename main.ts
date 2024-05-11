@@ -166,12 +166,12 @@ export default class FilterPlugin extends Plugin {
     // Обработчик события изменения активного представления
     onActiveLeafChange = async () => {
         const canvasView = this.app.workspace.getActiveViewOfType(ItemView);
-        if (!canvasView) return; // Если нет активного представления, выходим
+        if (!canvasView) return; 
 
         // Проверяем, является ли активное представление видом "canvas"
         if (canvasView.getViewType() === 'canvas') {
             //при переходе пользователя на canvas происходит фильтрация по тегам
-            let activeCheckboxes: string[] = this.getActiveCheckboxes(); // Вызываем функцию getActiveCheckboxes
+            let activeCheckboxes: string[] = this.getActiveCheckboxes(); 
             this.showNodesByTags(activeCheckboxes);
         }
     };
